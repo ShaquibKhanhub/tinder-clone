@@ -12,7 +12,7 @@ const AuthPage = () => {
           {isLogin ? "Sign in to Swipe" : "Create a Swipe account"}
         </h2>
 
-        <div className="bg-white shadow-xl rounded-lg p-8">
+        <div className="bg-white shadow-xl rounded-lg p-8 ">
           {isLogin ? <LoginForm /> : <SignUpForm />}
 
           <div className="mt-8 text-center">
