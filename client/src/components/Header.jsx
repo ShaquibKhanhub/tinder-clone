@@ -3,7 +3,7 @@ import { useAuthStore } from "../store/useAuthStore";
 import { Link } from "react-router-dom";
 import { Flame, LogOut, Menu, User } from "lucide-react";
 
-const Header = () => {
+export const Header = () => {
   const { authUser, logout } = useAuthStore();
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -32,7 +32,7 @@ const Header = () => {
               </span>
             </Link>
           </div>
-          <div className="items-center hidden space-x-4 md:flex">
+          <div className="items-center hidden space-x-4 md:flex ">
             {authUser ? (
               <div className="relative " ref={dropdownRef}>
                 <button
@@ -41,7 +41,7 @@ const Header = () => {
                 >
                   <img
                     src={authUser.image || "/avatar.png"}
-                    className="object-cover w-10 h-10 border-2 border-white rounded-full"
+                    className="object-cover w-10 h-10 border-2 border-white rounded-full "
                     alt="User image"
                   />
                   <span className="font-medium text-white">
@@ -145,5 +145,3 @@ const Header = () => {
     </header>
   );
 };
-
-export default Header;

@@ -74,7 +74,7 @@ export const getMatches = async (req, res) => {
 
     res.status(200).json({
       success: true,
-      matches: user.matches,
+      matches: user.matches, //current user matches
     });
   } catch (error) {
     console.log("Error in getMatches", error);

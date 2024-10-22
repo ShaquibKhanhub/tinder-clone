@@ -2,7 +2,7 @@ import { useRef, useState } from "react";
 
 import { useAuthStore } from "../store/useAuthStore";
 import { useUserStore } from "../store/useUserStore";
-import Header from "../components/Header";
+import {Header} from "../components/Header";
 
 const ProfilePage = () => {
 	const { authUser } = useAuthStore();
