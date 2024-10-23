@@ -3,7 +3,7 @@ import User from "../models/User.js";
 export const swipeRight = async (req, res) => {
   try {
     const { likedUserId } = req.params;
-    const user = await User.findById(req.user.id);
+    const currentUser = await User.findById(req.user.id);
     const likedUser = await User.findById(likedUserId);
 
     if (!likedUser) {
@@ -13,13 +13,12 @@ export const swipeRight = async (req, res) => {
     if (!currentUser.likes.includes(likedUserId)) {
       currentUser.likes.push(likedUserId);
       await currentUser.save();
-      
+
       //if the other user already liked us , it's a match, so let's update both the users
       if (likedUser.likes.includes(currentUser.id)) {
         currentUser.matches.push(likedUserId);
         likedUser.matches.push(currentUser.id);
 
-        //save both the users
         await Promise.all([await currentUser.save(), await likedUser.save()]);
       }
     }

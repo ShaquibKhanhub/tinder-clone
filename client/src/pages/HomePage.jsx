@@ -1,8 +1,8 @@
-import  { useEffect } from "react";
+import { useEffect } from "react";
 import Sidebar from "../components/Sidebar";
 import { useMatchStore } from "../store/useMatchStore";
 import { Frown } from "lucide-react";
-import {Header} from '../components/Header'
+import { Header } from "../components/Header";
 import { useAuthStore } from "../store/useAuthStore";
 import SwipeArea from "../components/SwipeArea";
 import SwipeFeedback from "../components/SwipeFeedback";
@@ -11,8 +11,7 @@ const HomePage = () => {
   const { isLoadingUserProfiles, getUserProfiles, userProfiles } =
     useMatchStore();
 
-    const { authUser } = useAuthStore();
-
+  const { authUser } = useAuthStore();
 
   useEffect(() => {
     getUserProfiles();
@@ -27,7 +26,6 @@ const HomePage = () => {
         <main className="flex-grow flex flex-col gap-10 justify-center items-center p-4 relative overflow-hidden">
           {userProfiles.length > 0 && !isLoadingUserProfiles && (
             <>
-            user found
               <SwipeArea />
               <SwipeFeedback />
             </>
