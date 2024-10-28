@@ -22,25 +22,26 @@ const setTokenAndCookie = (user, res) => {
 };
 
 export const signup = async (req, res) => {
+  const { name, email, password, age, gender, genderPreference } = req.body;
   try {
-    const { name, email, password, age, gender, genderPreference } = req.body;
     if (!name || !email || !password || !age || !gender || !genderPreference) {
-      return res
-        .status(400)
-        .json({ success: false, message: "Please fill in all fields" });
+      return res.status(400).json({
+        success: false,
+        message: "All fields are required",
+      });
     }
 
     if (age < 18) {
       return res.status(400).json({
         success: false,
-        message: "You must be at least 18 years old to sign up",
+        message: "You must at lest 18 years old",
       });
     }
 
     if (password.length < 6) {
       return res.status(400).json({
         success: false,
-        message: "Password must be at least 6 characters long",
+        message: "Password must be at least 6 characters",
       });
     }
 
@@ -69,6 +70,7 @@ export const signup = async (req, res) => {
     });
   }
 };
+
 export const login = async (req, res) => {
   const { email, password } = req.body;
   try {
@@ -84,8 +86,10 @@ export const login = async (req, res) => {
       return res.status(401).json({
         success: false,
         message: "Invalid email or password",
+       
       });
     }
+
 
     // Set token and cookie
     setTokenAndCookie(user, res);

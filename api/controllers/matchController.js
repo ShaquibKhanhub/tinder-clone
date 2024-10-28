@@ -25,6 +25,7 @@ export const swipeRight = async (req, res) => {
         // send notification in real-time with socket.io
         const connectedUsers = getConnectedUsers();
         const io = getIO();
+        //Notifying the Liked user (if They are Online)
         const likedUserSocketId = connectedUsers.get(likedUserId); //we've passed userId this will give us socketId
 
         if (likedUserSocketId) {
@@ -34,7 +35,7 @@ export const swipeRight = async (req, res) => {
             image: currentUser.image,
           });
         }
-
+        //Notifying the Current user (if They are Online)
         const currentSocketId = connectedUsers.get(currentUser._id.toString());
         if (currentSocketId) {
           io.to(currentSocketId).emit("newMatch", {
@@ -44,6 +45,10 @@ export const swipeRight = async (req, res) => {
           });
         }
       }
+
+      //connectedUsers.get(likedUserId) checks if likedUserId (User B’s ID) is a key in the connectedUsers map.
+      // If likedUserId is in the map, it returns User B's socketId.
+      // If likedUserId is not in the map, it returns undefined, meaning User B is not currently online.
     }
 
     res.status(200).json({

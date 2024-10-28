@@ -10,15 +10,15 @@ const LoginForm = () => {
   return (
     <form
       className="space-y-6"
-      onClick={(e) => {
+      onSubmit={(e) => {
         e.preventDefault();
         login({ email, password });
       }}
     >
       <div>
         <label
-          className="block text-sm font-medium text-gray-700 "
           htmlFor="email"
+          className="block text-sm font-medium text-gray-700"
         >
           Email address
         </label>
@@ -72,5 +72,4 @@ const LoginForm = () => {
     </form>
   );
 };
-
 export default LoginForm;
